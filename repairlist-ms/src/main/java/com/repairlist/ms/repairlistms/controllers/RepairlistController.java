@@ -86,5 +86,5 @@ public class RepairlistController {
     public void deleteRepairlist(@PathVariable Long id) {
         repairlistService.deleteRepairlistById(id);
     }
-    
+
 }
