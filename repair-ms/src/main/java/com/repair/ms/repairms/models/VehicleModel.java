@@ -1,24 +1,14 @@
-package com.vehicle.ms.vehiclems.entities;
+package com.repair.ms.repairms.models;
 
-
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
-@Entity
-@Table(name = "vehicles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VehicleEntity {
+public class VehicleModel {
 
-    /* ATRIBUTES */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
     private Long id;
     private String registrationPlate;
     private String brand;
