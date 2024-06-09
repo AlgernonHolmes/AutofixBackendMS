@@ -4,7 +4,7 @@ package com.repair.ms.repairms.services;
 import com.repair.ms.repairms.entities.RepairDetailEntity;
 import com.repair.ms.repairms.entities.RepairEntity;
 import com.repair.ms.repairms.models.VehicleModel;
-import com.repair.ms.repairms.repositories.RepairDetailEntityRepository;
+import com.repair.ms.repairms.repositories.RepairDetailRepository;
 import com.repair.ms.repairms.repositories.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -29,7 +29,7 @@ public class RepairService {
     RepairRepository repairRepository;
 
     @Autowired
-    RepairDetailEntityRepository repairDetailEntityRepository;
+    RepairDetailRepository repairDetailRepository;
 
     @Autowired
     RestTemplate restTemplate;
@@ -71,7 +71,7 @@ public class RepairService {
         String vehiclePlate = repairEntity.getVehiclePlate();
 
         /* totalInitialCost calculation*/
-        List<RepairDetailEntity> repairDetails = repairDetailEntityRepository.findAllByVehiclePlate(vehiclePlate);
+        List<RepairDetailEntity> repairDetails = repairDetailRepository.findAllByVehiclePlate(vehiclePlate);
         double initialTotalCost = 0;
         for (RepairDetailEntity repairDetail : repairDetails) {
             initialTotalCost += repairDetail.getRepairCost();
@@ -299,7 +299,7 @@ public class RepairService {
     public double repAmountDiscount(double initialCost, String plate) {
         VehicleModel vehicle = getVehicle(plate);
         String engineType = vehicle.getEngineType().toLowerCase();
-        List<RepairDetailEntity> repairs = repairDetailEntityRepository.findAllByVehiclePlate(plate);
+        List<RepairDetailEntity> repairs = repairDetailRepository.findAllByVehiclePlate(plate);
         LocalDate currentDate = LocalDate.now();
         int repairQuantity = 0;
         for (RepairDetailEntity repair : repairs) {
@@ -356,7 +356,7 @@ public class RepairService {
 
 
     /* DISCOUNT AND SURCHARGE APPLICATION */
-    
+
     /*--------------------------------------------------------------------------------------------------------
      * applySurandDis: method to apply surcharges and discounts to a repair entity;
      *

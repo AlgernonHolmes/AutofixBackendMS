@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepairlistRepository extends JpaRepository<RepairlistEntity, Long> {
+
+    public RepairlistEntity findByRepairType(String repairType);
 }

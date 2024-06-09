@@ -3,6 +3,7 @@ package com.repairlist.ms.repairlistms.controllers;
 import com.repairlist.ms.repairlistms.entities.RepairlistEntity;
 import com.repairlist.ms.repairlistms.services.RepairlistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,22 @@ public class RepairlistController {
     @GetMapping("/{id}")
     public RepairlistEntity getRepairlistById(@PathVariable Long id) {
         return repairlistService.getRepairlistById(id);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getRepairlistByRepairType: endpoint to retrieve a specific repair list by its type;
+     *
+     * @param repairType - the type of repair list to retrieve;
+     * @return - the repair list with the specified type, or 404 if not found;
+     --------------------------------------------------------------------------------------------------------*/
+    @GetMapping("/{repairType}")
+    public ResponseEntity<RepairlistEntity> getRepairlistByRepairType(@PathVariable String repairType) {
+        RepairlistEntity repairlist = repairlistService.getRepairlistByType(repairType);
+        if (repairlist != null) {
+            return ResponseEntity.ok(repairlist);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /* POST OPERATIONS */

@@ -38,6 +38,17 @@ public class RepairlistService {
         return repairlistRepository.findById(id).orElse(null);
     }
 
+    /*--------------------------------------------------------------------------------------------------------
+     * getRepairlistByType: method to find a specific repair list in the database by its type;
+     *
+     * @param repairType - the type of repair to find;
+     * @return - the repair list with the specified type;
+     --------------------------------------------------------------------------------------------------------*/
+    public RepairlistEntity getRepairlistByType(String repairType){
+        return repairlistRepository.findByRepairType(repairType);
+    }
+
+
     /* POST OPERATIONS */
 
     /*--------------------------------------------------------------------------------------------------------
