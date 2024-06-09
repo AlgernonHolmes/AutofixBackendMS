@@ -226,6 +226,43 @@ public class RepairService {
     }
 
 
+    /*--------------------------------------------------------------------------------------------------------
+    * mileageSurcharge: method to calculate mileage surcharge;
+    *
+    * @param price - total price;
+    * @param mileage - mileage of the vehicle;
+    * @param type - type of the vehicle;
+    * @return - the amount to be surcharged;
+    --------------------------------------------------------------------------------------------------------*/
+    public double mileageSurcharge(double price, RepairEntity repair) {
+        double mileage = repair.getMilage();
+        String type = repair.getVehicleType().toLowerCase();
+        double surchargePercentage = 0.0;
+
+        if (mileage >= 5001 && mileage <= 12000) {
+            if (type.equals("sedan") || type.equals("hatchback")) {
+                surchargePercentage = 0.03;
+            } else {
+                surchargePercentage = 0.05;
+            }
+        } else if (mileage >= 12001 && mileage <= 25000) {
+            if (type.equals("sedan") || type.equals("hatchback")) {
+                surchargePercentage = 0.07;
+            } else {
+                surchargePercentage = 0.09;
+            }
+        } else if (mileage >= 25001 && mileage <= 40000) {
+            surchargePercentage = 0.12;
+        } else {
+            surchargePercentage = 0.20;
+        }
+
+        double surchargeValue = price * surchargePercentage;
+        return surchargeValue;
+    }
+
+
+
     /* DISCOUNTS */
 
     /*--------------------------------------------------------------------------------------------------------
@@ -315,5 +352,40 @@ public class RepairService {
             }
         }
         return (initialCost * discount);
+    }
+
+
+    /* DISCOUNT AND SURCHARGE APPLICATION */
+    
+    /*--------------------------------------------------------------------------------------------------------
+     * applySurandDis: method to apply surcharges and discounts to a repair entity;
+     *
+     * @param vehiclePlate - vehicle plate number for which surcharges and discounts are applied;
+     * @return - the updated repair entity after applying surcharges and discounts;
+     --------------------------------------------------------------------------------------------------------*/
+    public RepairEntity applySurandDis(String vehiclePlate) {
+
+        /*we find the repair we want to apply the surcharges and
+          discounts to
+         */
+        RepairEntity repair = getRepairByPlate(vehiclePlate);
+        /*we calculate all surcharges */
+        double cost = repair.getTotalCost();
+        double delaySur = delaySurcharge(cost, repair);
+        double antiSur = antiquitySurcharge(cost, repair);
+        double milageSur = mileageSurcharge(cost,repair);
+        repair.setTotalSurcharge(delaySur+antiSur+milageSur);
+        /*we calculate all discounts*/
+        double dayDiscount = dayDiscount(cost,repair);
+        double repDiscount = repAmountDiscount(cost,vehiclePlate);
+        repair.setTotal_discount(dayDiscount+repDiscount);
+        /*we calculate the formula:
+          finalCost = (initialCost + totalSur - totalDis) + IVA
+         */
+        repair.setAmount_iva(cost * 0.19);
+        double finalCost = (cost + repair.getTotalSurcharge() -
+                            repair.getTotal_discount()) + repair.getAmount_iva();
+        repair.setFinalPrice(finalCost);
+        return repairRepository.save(repair);
     }
 }
