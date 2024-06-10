@@ -4,13 +4,13 @@ import com.repair.ms.repairms.entities.RepairDetailEntity;
 import com.repair.ms.repairms.models.RepairlistModel;
 import com.repair.ms.repairms.models.VehicleModel;
 import com.repair.ms.repairms.repositories.RepairDetailRepository;
-import com.repair.ms.repairms.repositories.RepairRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,6 +85,19 @@ public class RepairDetailService {
     }
 
 
+    /* GET OPERATIONS */
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getAllRepairDetails: Method to retrieve all repair detail entities from the database.
+     *
+     * @return - List of all repair detail entities.
+     --------------------------------------------------------------------------------------------------------*/
+    public List<RepairDetailEntity> getAllRepairDetails() {
+        return repairDetailRepository.findAll();
+    }
+
+    /* UPDATE OPERATIONS */
+
     /*--------------------------------------------------------------------------------------------------------
      * updateRepairDetail: method to update an existing repair detail entity in the database;
      *
@@ -102,6 +115,8 @@ public class RepairDetailService {
             return repairDetailRepository.save(repairDetail);
         });
     }
+
+    /* DELETE OPERATIONS */
 
     /*--------------------------------------------------------------------------------------------------------
      * deleteRepairDetail: method to delete a repair detail entity from the database;

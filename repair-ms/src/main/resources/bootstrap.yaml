@@ -1,0 +1,19 @@
+spring:
+  devtools:
+    restart:
+      aditional-paths: src/main/java
+  application:
+    name: repair-ms
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8881
+  datasource:
+    url: jdbc:postgresql://localhost:5432/repair-ms
+    username: postgres
+    password: alo1234

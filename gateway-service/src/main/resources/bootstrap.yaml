@@ -4,4 +4,14 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8081
+      uri: http://localhost:8881
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'gateway,*'
+  endpoint:
+    gateway:
+      enabled: true
+    health:
+      show-details: always
