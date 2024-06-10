@@ -12,7 +12,7 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8881
+      uri: http://localhost:8081
   datasource:
     url: jdbc:postgresql://localhost:5432/repair-ms
     username: postgres
