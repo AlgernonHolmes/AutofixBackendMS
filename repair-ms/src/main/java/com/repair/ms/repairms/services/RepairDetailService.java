@@ -2,7 +2,9 @@ package com.repair.ms.repairms.services;
 
 import com.repair.ms.repairms.entities.RepairDetailEntity;
 import com.repair.ms.repairms.models.RepairlistModel;
+import com.repair.ms.repairms.models.VehicleModel;
 import com.repair.ms.repairms.repositories.RepairDetailRepository;
+import com.repair.ms.repairms.repositories.RepairRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class RepairDetailService {
 
     @Autowired
     RepairDetailRepository repairDetailRepository;
+
+    @Autowired
+    RepairService repairService;
 
     @Autowired
     RestTemplate restTemplate;
@@ -41,12 +46,41 @@ public class RepairDetailService {
     /* POST OPERATIONS */
 
     /*--------------------------------------------------------------------------------------------------------
-     * createRepairDetail: method to create a new repair detail entity in the database;
+     * createRepairDetail: Method to create a new repair detail entity in the database;
      *
      * @param repairDetailEntity - the repair detail entity to be created;
      * @return - the created repair detail entity;
      --------------------------------------------------------------------------------------------------------*/
     public RepairDetailEntity createRepairDetail(RepairDetailEntity repairDetailEntity) {
+        /*we get the repairType for the corresponding repairDetail*/
+        String repairType = repairDetailEntity.getRepairType();
+        RepairlistModel repairPrice = getRepairlistByRepairType(repairType);
+
+        /* we get the vehicle and its engineType */
+        String plate = repairDetailEntity.getVehiclePlate();
+        VehicleModel vehicle = repairService.getVehicle(plate);
+        String engineType = vehicle.getEngineType();
+
+        /* we assign a price depending on the engineType */
+        double price = 0.0;
+        switch (engineType) {
+            case "gasoline":
+                price = repairPrice.getGasolinePrice();
+                break;
+            case "diesel":
+                price = repairPrice.getDieselPrice();
+                break;
+            case "hybrid":
+                price = repairPrice.getHybridPrice();
+                break;
+            case "electric":
+                price = repairPrice.getElectricPrice();
+                break;
+            default:
+                price = 0.0;
+                break;
+        }
+        repairDetailEntity.setRepairCost(price);
         return repairDetailRepository.save(repairDetailEntity);
     }
 
