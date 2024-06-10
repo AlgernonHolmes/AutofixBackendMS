@@ -35,7 +35,7 @@ public class RepairDetailService {
      --------------------------------------------------------------------------------------------------------*/
     public RepairlistModel getRepairlistByRepairType(String repairType) {
         ResponseEntity<RepairlistModel> responseEntity = restTemplate.exchange(
-                "httpdsfsdf" + repairType,
+                "http://repairlist-ms/ms/repairlist/" + repairType,
                 HttpMethod.GET,
                 null,
                 RepairlistModel.class
