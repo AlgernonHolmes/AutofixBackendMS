@@ -3,7 +3,7 @@ spring:
     restart:
       aditional-paths: src/main/java
   application:
-    name: repairlist-ms
+    name: ms-repairlist
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -13,6 +13,9 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+      import:
+        - optional:configserver:
+            uri: http://localhost:8081
   datasource:
     url: jdbc:postgresql://localhost:5432/repairlist-ms
     username: postgres

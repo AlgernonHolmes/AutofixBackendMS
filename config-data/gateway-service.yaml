@@ -32,11 +32,11 @@ spring:
           uri: lb://repair-ms
           predicates:
             - Path=/ms/repair**
-        - id: repairlist-ms
-          uri: lb://repairlist-ms
+        - id: ms-repairlist
+          uri: lb://ms-repairlist
           predicates:
-            - Path=/ms/repairlist**
+            - Path=/ms/listrepair**
         - id: reports-ms
           uri: lb://reports-ms
           predicates:
-            - Path=/ms/reports-ms**
+            - Path=/ms/reports**

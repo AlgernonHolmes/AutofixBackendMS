@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ms/repairlist")
+@RequestMapping("/ms/listrepair")
 @CrossOrigin("*")
 public class RepairlistController {
 

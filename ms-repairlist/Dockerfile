@@ -1,4 +1,4 @@
 FROM openjdk:17
 ARG JAR_FILE=./target/*.jar
 COPY ${JAR_FILE} config-server.jar
-ENTRYPOINT ["java","-jar","/repairlist-ms.jar"]
+ENTRYPOINT ["java","-jar","/ms-repairlist.jar"]
