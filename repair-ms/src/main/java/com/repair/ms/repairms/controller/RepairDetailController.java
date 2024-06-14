@@ -18,15 +18,7 @@ public class RepairDetailController {
     @Autowired
     RepairDetailService repairDetailService;
 
-    /*--------------------------------------------------------------------------------------------------------
-     * getAllRepairDetails: Method to retrieve all repair detail entities from the database.
-     *
-     * @return - List of all repair detail entities.
-     --------------------------------------------------------------------------------------------------------*/
-    @GetMapping
-    public List<RepairDetailEntity> getAllRepairDetails() {
-        return repairDetailService.getAllRepairDetails();
-    }
+    /* POST OPERATIONS */
 
     /*--------------------------------------------------------------------------------------------------------
      * createRepairDetail: Method to create a new repair detail entity in the database.
@@ -39,6 +31,21 @@ public class RepairDetailController {
         return repairDetailService.createRepairDetail(repairDetailEntity);
     }
 
+    /*GET OPERATIONS */
+
+    /*--------------------------------------------------------------------------------------------------------
+     * getAllRepairDetails: Method to retrieve all repair detail entities from the database.
+     *
+     * @return - List of all repair detail entities.
+     --------------------------------------------------------------------------------------------------------*/
+    @GetMapping
+    public List<RepairDetailEntity> getAllRepairDetails() {
+        return repairDetailService.getAllRepairDetails();
+    }
+
+
+    /* UPDATE OPERATIONS */
+
     /*--------------------------------------------------------------------------------------------------------
      * updateRepairDetail: Method to update an existing repair detail entity in the database.
      *
@@ -50,6 +57,8 @@ public class RepairDetailController {
     public Optional<RepairDetailEntity> updateRepairDetail(@PathVariable Long id, @RequestBody RepairDetailEntity updatedRepairDetail) {
         return repairDetailService.updateRepairDetail(id, updatedRepairDetail);
     }
+
+    /* DELETE OPERATIONS */
 
     /*--------------------------------------------------------------------------------------------------------
      * deleteRepairDetail: Method to delete a repair detail entity from the database.
