@@ -5,6 +5,20 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+  gateway:
+    default-filters:
+      - TokenRelay
+    globalcors:
+      cors-configurations:
+        '[/**]':
+          allowed-origin-patterns: '*'
+          allowed-methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          allowed-headers: '*'
+          allow-credentials: true
 management:
   endpoints:
     web:
