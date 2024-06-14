@@ -24,7 +24,7 @@ public class RepairController {
      * @param repairEntity - the repair entity to be created;
      * @return - the created repair entity;
      --------------------------------------------------------------------------------------------------------*/
-    @PostMapping("/create")
+    @PostMapping("")
     public RepairEntity createRepair(@RequestBody RepairEntity repairEntity) {
         return repairService.createRepair(repairEntity);
     }
@@ -36,7 +36,7 @@ public class RepairController {
      *
      * @return - a list containing all repair entities;
      --------------------------------------------------------------------------------------------------------*/
-    @GetMapping("/all")
+    @GetMapping("")
     public List<RepairEntity> getAllRepairs() {
         return repairService.getAllRepairs();
     }
@@ -61,7 +61,7 @@ public class RepairController {
      * @param updatedRepair - the updated repair entity;
      * @return - the updated repair entity;
      --------------------------------------------------------------------------------------------------------*/
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Optional<RepairEntity> updateRepair(@PathVariable Long id, @RequestBody RepairEntity updatedRepair) {
         return repairService.updateRepair(id, updatedRepair);
     }
@@ -73,7 +73,7 @@ public class RepairController {
      *
      * @param id - the ID of the repair entity to be deleted;
      --------------------------------------------------------------------------------------------------------*/
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteRepair(@PathVariable Long id) {
         repairService.deleteRepair(id);
     }

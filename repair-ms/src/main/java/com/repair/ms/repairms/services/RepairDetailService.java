@@ -35,7 +35,7 @@ public class RepairDetailService {
      --------------------------------------------------------------------------------------------------------*/
     public RepairlistModel getRepairlistByRepairType(String repairType) {
         ResponseEntity<RepairlistModel> responseEntity = restTemplate.exchange(
-                "http://repairlist-ms/ms/repairlist/" + repairType,
+                "http://ms-repairlist/ms/listrepair/wt/" + repairType,
                 HttpMethod.GET,
                 null,
                 RepairlistModel.class
@@ -81,6 +81,7 @@ public class RepairDetailService {
                 break;
         }
         repairDetailEntity.setRepairCost(price);
+        System.out.println(repairDetailEntity.getRepairCost());
         return repairDetailRepository.save(repairDetailEntity);
     }
 

@@ -10,7 +10,7 @@ import java.time.LocalTime;
 
 
 @Entity
-@Table(name = "repairHistory")
+@Table(name = "repairhistory")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

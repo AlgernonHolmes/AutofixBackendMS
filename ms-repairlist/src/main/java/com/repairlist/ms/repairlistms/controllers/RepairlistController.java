@@ -51,15 +51,11 @@ public class RepairlistController {
      * @param repairType - the type of repair list to retrieve;
      * @return - the repair list with the specified type, or 404 if not found;
      --------------------------------------------------------------------------------------------------------*/
-    @GetMapping("/{repairType}")
-    public ResponseEntity<RepairlistEntity> getRepairlistByRepairType(@PathVariable String repairType) {
-        RepairlistEntity repairlist = repairlistService.getRepairlistByType(repairType);
-        if (repairlist != null) {
-            return ResponseEntity.ok(repairlist);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/wt/{repairType}")
+    public RepairlistEntity getRepairlistByRepairType(@PathVariable String repairType) {
+        return repairlistService.getRepairlistByType(repairType);
     }
+
 
     /* POST OPERATIONS */
 
