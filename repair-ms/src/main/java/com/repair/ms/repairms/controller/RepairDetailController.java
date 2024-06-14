@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ms/repairdetail")
-@CrossOrigin("*")
 public class RepairDetailController {
 
     /* Service layer methods */

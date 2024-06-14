@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ms/vehicle")
-@CrossOrigin("*")
 public class VehicleController {
 
     /* API endpoints */
