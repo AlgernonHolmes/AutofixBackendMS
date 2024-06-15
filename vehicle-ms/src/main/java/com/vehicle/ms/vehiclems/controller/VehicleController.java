@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ms/vehicle")
+@RequestMapping("/ms/vehicle/")
 public class VehicleController {
 
     /* API endpoints */
@@ -25,7 +25,7 @@ public class VehicleController {
      *
      * @return A list with all vehicles.
      --------------------------------------------------------------------------------------------------------*/
-    @GetMapping
+    @GetMapping()
     public List<VehicleEntity> getAllVehicles() {
         return vehicleService.getVehicles();
     }
@@ -36,7 +36,7 @@ public class VehicleController {
      * @param registrationPlate The registration plate of the vehicle to search for.
      * @return The vehicle with the specified plate.
      --------------------------------------------------------------------------------------------------------*/
-    @GetMapping("/{registrationPlate}")
+    @GetMapping("{registrationPlate}")
     public VehicleEntity getVehicleByPlate(@PathVariable String registrationPlate) {
         return vehicleService.getByPlate(registrationPlate);
     }
@@ -47,7 +47,7 @@ public class VehicleController {
      * @param vehicle The vehicle to create.
      * @return The created vehicle.
      --------------------------------------------------------------------------------------------------------*/
-    @PostMapping
+    @PostMapping("")
     public VehicleEntity createVehicle(@RequestBody VehicleEntity vehicle) {
         return vehicleService.createVehicle(vehicle);
     }
@@ -59,7 +59,7 @@ public class VehicleController {
      * @param updatedVehicle The updated vehicle.
      * @return The updated vehicle.
      --------------------------------------------------------------------------------------------------------*/
-    @PutMapping("/{registrationPlate}")
+    @PutMapping("{registrationPlate}")
     public VehicleEntity updateVehicle(@PathVariable String registrationPlate, @RequestBody VehicleEntity updatedVehicle) {
         updatedVehicle.setRegistrationPlate(registrationPlate); // Ensure that the plate of the updated vehicle is the same as provided in the URL
         return vehicleService.updateVehicle(updatedVehicle);
@@ -70,7 +70,7 @@ public class VehicleController {
      *
      * @param registrationPlate The plate of the vehicle to delete.
      --------------------------------------------------------------------------------------------------------*/
-    @DeleteMapping("/{registrationPlate}")
+    @DeleteMapping("{registrationPlate}")
     public void deleteVehicle(@PathVariable String registrationPlate) {
         vehicleService.deleteVehicleByPlate(registrationPlate);
     }
