@@ -73,8 +73,8 @@ public class VehicleService {
      * @return - null
      --------------------------------------------------------------------------------------------------------*/
 
-    public VehicleEntity deleteVehicleByPlate(String plate){
-        return vehicleRepository.deleteByRegistrationPlate(plate);
+    public void deleteVehicleByPlate(String plate){
+         vehicleRepository.deleteByRegistrationPlate(plate);
     }
 
 }

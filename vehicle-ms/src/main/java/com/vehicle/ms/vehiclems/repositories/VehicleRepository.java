@@ -12,6 +12,6 @@ public interface VehicleRepository extends JpaRepository<VehicleEntity, Long> {
     public VehicleEntity findByRegistrationPlate(String registrationPlate);
 
     @Transactional
-    public VehicleEntity deleteByRegistrationPlate(String registrationPlate);
+    public void deleteByRegistrationPlate(String registrationPlate);
 
 }
