@@ -1,7 +1,7 @@
 import httpClient from "../http-common";
 
 const getAllVehicles = () => {
-    return httpClient.get('/ms/vehicle');
+    return httpClient.get('/ms/vehicle/');
 }
 
 const getVehicleByPlate = (registrationPlate) => {
@@ -9,7 +9,7 @@ const getVehicleByPlate = (registrationPlate) => {
 }
 
 const createVehicle = (vehicle) => {
-    return httpClient.post("/ms/vehicle", vehicle);
+    return httpClient.post("/ms/vehicle/", vehicle);
 }
 
 const updateVehicleById = (id, updatedVehicle) => {
@@ -17,7 +17,7 @@ const updateVehicleById = (id, updatedVehicle) => {
 }
 
 const updateVehicle = (updatedVehicle) => {
-    return httpClient.put("/ms/vehicle", updatedVehicle);
+    return httpClient.put("/ms/vehicle/", updatedVehicle);
 }
 
 const deleteVehicleById = (id) => {

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/ms/repairdetail")
+@RequestMapping("/ms/repair/repairdetail")
 public class RepairDetailController {
 
     /* Service layer methods */
@@ -25,7 +25,7 @@ public class RepairDetailController {
      * @param repairDetailEntity - the repair detail entity to be created.
      * @return - the created repair detail entity.
      --------------------------------------------------------------------------------------------------------*/
-    @PostMapping
+    @PostMapping("/")
     public RepairDetailEntity createRepairDetail(@RequestBody RepairDetailEntity repairDetailEntity) {
         return repairDetailService.createRepairDetail(repairDetailEntity);
     }
@@ -37,7 +37,7 @@ public class RepairDetailController {
      *
      * @return - List of all repair detail entities.
      --------------------------------------------------------------------------------------------------------*/
-    @GetMapping
+    @GetMapping("/")
     public List<RepairDetailEntity> getAllRepairDetails() {
         return repairDetailService.getAllRepairDetails();
     }
