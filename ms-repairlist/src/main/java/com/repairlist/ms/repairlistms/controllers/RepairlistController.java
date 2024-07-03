@@ -3,7 +3,6 @@ package com.repairlist.ms.repairlistms.controllers;
 import com.repairlist.ms.repairlistms.entities.RepairlistEntity;
 import com.repairlist.ms.repairlistms.services.RepairlistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class RepairlistController {
      * @return - a list with all repair lists.
      --------------------------------------------------------------------------------------------------------*/
 
-    @GetMapping
+    @GetMapping("/")
     public List<RepairlistEntity> getAllRepairlists() {
         return repairlistService.getAllRepairlists();
     }
@@ -65,7 +64,7 @@ public class RepairlistController {
      * @return - the created repair list.
      --------------------------------------------------------------------------------------------------------*/
 
-    @PostMapping
+    @PostMapping("/")
     public RepairlistEntity createRepairlist(@RequestBody RepairlistEntity repairlist) {
         return repairlistService.createRepairlist(repairlist);
     }

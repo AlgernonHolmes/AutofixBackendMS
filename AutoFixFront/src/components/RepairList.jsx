@@ -20,48 +20,56 @@ const RepairList = () => {
         }
       };
 
+      const handleDeleteRepair = (id) => {
+        repairService.deleteRepairDetailById(id);
+      }
     
 
-    return (
-        <div style={{ backgroundColor: 'white', color: 'black', padding: '20px', borderRadius: '10px' }}>
-            
-
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><b>Vehicle Plate</b></TableCell>
-                            <TableCell><b>Repair Type</b></TableCell>
-                            <TableCell><b>Repair Date</b></TableCell>
-                            <TableCell><b>Repair Time</b></TableCell>
-                            <TableCell><b>Repair Cost</b></TableCell>
-                            <TableCell><b>Update Repair</b></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {repairs.map((repair) => (
-                            <TableRow key={repair.id}>
-                                <TableCell>{repair.vehiclePlate}</TableCell>
-                                <TableCell>{repair.repairType}</TableCell>
-                                <TableCell>{repair.repairDate}</TableCell>
-                                <TableCell>{repair.repairTime}</TableCell>
-                                <TableCell>{repair.repairCost}</TableCell>
-                                <TableCell>
-                                    <Button variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} onClick={() => handleUpdateRepair(repair.id)}>Update</Button>
-                                </TableCell>
+    return (   
+        <div>
+            <h1><b>[repair detail list]</b></h1>
+            <div style={{ backgroundColor: 'white', color: 'black', padding: '20px', borderRadius: '10px' }}>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell><b>Vehicle Plate</b></TableCell>
+                                <TableCell><b>Repair Type</b></TableCell>
+                                <TableCell><b>Repair Date</b></TableCell>
+                                <TableCell><b>Repair Time</b></TableCell>
+                                <TableCell><b>Repair Cost</b></TableCell>
+                                <TableCell><b>Update Repair</b></TableCell>
+                                <TableCell><b>Delete Repair</b></TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {repairs.map((repair) => (
+                                <TableRow key={repair.id}>
+                                    <TableCell>{repair.vehiclePlate}</TableCell>
+                                    <TableCell>{repair.repairType}</TableCell>
+                                    <TableCell>{repair.repairDate}</TableCell>
+                                    <TableCell>{repair.repairTime}</TableCell>
+                                    <TableCell>{repair.repairCost}</TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} onClick={() => handleUpdateRepair(repair.id)}>Update</Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} onClick={() => handleDeleteRepair(repair.id)}>Delete</Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
-            <Box mt={2}>
-                <Button component={Link} to="/add/repair" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Add Repair</Button>
-            </Box>
+                <Box mt={2}>
+                    <Button component={Link} to="/add/repair" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Add Repair</Button>
+                </Box>
 
-            <Box mt={2}>
-                <Button component={Link} to="/receipt" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Generate Receipt</Button>
-            </Box>
+                <Box mt={2}>
+                    <Button component={Link} to="/receipt" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Generate Receipt</Button>
+                </Box>
+            </div>
         </div>
     );
 };

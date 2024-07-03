@@ -84,11 +84,13 @@ public class RepairService {
 
         repairEntity.setEngineType(vehicle.getEngineType());
         repairEntity.setVehicleBrand(vehicle.getBrand());
+        repairEntity.setVehicleModel(vehicle.getModel());
         repairEntity.setVehicleType(vehicle.getType());
         repairEntity.setFabricationYear(vehicle.getFabricationYear());
         repairEntity.setMilage(vehicle.getMilage());
 
-        return repairRepository.save(repairEntity);
+        repairRepository.save(repairEntity);
+        return applySurandDis(vehiclePlate);
     }
 
 

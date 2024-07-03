@@ -24,6 +24,7 @@ public class RepairEntity {
        which is being repaired */
     private String vehiclePlate;
     private String vehicleBrand;
+    private String vehicleModel;
     private String vehicleType;
     private int fabricationYear;
     private String engineType;

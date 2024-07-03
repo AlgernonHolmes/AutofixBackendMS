@@ -1,5 +1,7 @@
 import httpClient from "../http-common";
 
+/* REPAIR DETAIL SECTION */
+
 const getAllRepairDetails = () => {
     return httpClient.get('/ms/repair/repairdetail/');
 }
@@ -16,10 +18,19 @@ const deleteRepairDetailById = (id) => {
     return httpClient.delete(`/ms/repair/repairdetail/${id}`);
 }
 
+/* REPAIR SECTION */
+
+const getAllRepairs = () => {
+    return httpClient.get('/ms/repair/');
+}
+
+
+
 export default { 
     getAllRepairDetails, 
     createRepairDetail, 
     updateRepairDetail, 
-    deleteRepairDetailById
+    deleteRepairDetailById,
+    getAllRepairs
 };
 

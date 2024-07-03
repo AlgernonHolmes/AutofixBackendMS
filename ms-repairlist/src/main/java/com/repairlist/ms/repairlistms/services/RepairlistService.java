@@ -59,6 +59,8 @@ public class RepairlistService {
      --------------------------------------------------------------------------------------------------------*/
 
     public RepairlistEntity createRepairlist(RepairlistEntity repairlist){
+        String repairType = repairlist.getRepairType().toLowerCase();
+        repairlist.setRepairType(repairType);
         return repairlistRepository.save(repairlist);
     }
 

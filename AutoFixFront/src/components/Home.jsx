@@ -20,6 +20,11 @@ const Home = () => {
           style={{ backgroundColor: '#800000', color: 'white' }}>
             Get started: Add a new Vehicle!
           </Button>
+          <br /> <br />
+          <Button component={Link} to="/repairtype" variant="contained" 
+          style={{ backgroundColor: '#800000', color: 'white' }}>
+            In need for a repair? - Add a new repairtype!
+          </Button>
         </Box>
       </div>
     );
