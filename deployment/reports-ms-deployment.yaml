@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reports-ms-deployment
+  labels:
+    app: reports-ms-deployment
+spec:
+  selector:
+    matchLabels:
+      app: reports-ms-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: reports-ms-deployment
+    spec:
+      containers:
+        - name: reports-ms
+          image: algernonholmes/reports-ms
+          ports:
+            - containerPort: 8096

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-repairlist-deployment
+  labels:
+    app: ms-repairlist-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ms-repairlist-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ms-repairlist-deployment
+    spec:
+      containers:
+        - name: ms-repairlist
+          image: algernonholmes/ms-repairlist
+          ports:
+            - containerPort: 8094

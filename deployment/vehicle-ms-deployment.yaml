@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehicle-ms-deployment
+  labels:
+    app: vehicle-ms-deployment
+spec:
+  selector:
+    matchLabels:
+      app: vehicle-ms-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vehicle-ms-deployment
+    spec:
+      containers:
+        - name: vehicle-ms
+          image: algernonholmes/vehicle-ms
+          ports:
+            - containerPort: 8090
