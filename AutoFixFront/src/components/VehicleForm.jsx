@@ -4,7 +4,7 @@ import {TextField, Button, FormControl, MenuItem, Box, Grid} from '@mui/material
 
 
 const VehicleForm = () => {
-
+  
   const [formData, setFormData] = useState({
     registrationPlate: '',
     brand: '',
@@ -158,7 +158,7 @@ const VehicleForm = () => {
                 onChange={handleChange}
                 required
               >
-                {['Gasolina', 'Diesel', 'Hibrido', 'Electrico'].map((option) => (
+                {['gasoline', 'diesel', 'hybrid', 'electric'].map((option) => (
                   <MenuItem key={option} value={option.toLowerCase()}>
                     {option}
                   </MenuItem>

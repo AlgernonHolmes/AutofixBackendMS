@@ -25,6 +25,27 @@ const RepairList = () => {
       }
     
 
+
+      const handleUpdateRepairHistory = (repairs) => {
+    
+        const uniqueVehiclePlates = {};
+
+        repairs.forEach((repair) => {
+          const { vehiclePlate } = repair;
+          if (!uniqueVehiclePlates[vehiclePlate]) {
+            uniqueVehiclePlates[vehiclePlate] = { vehiclePlate };
+          }
+        });
+        
+        const uniqueRepairObjects = Object.values(uniqueVehiclePlates);
+        console.log(uniqueRepairObjects)
+        uniqueRepairObjects.forEach((repairObject) => {
+          repairService.createRepair(repairObject);
+        });
+      }
+      
+      
+      
     return (   
         <div>
             <h1><b>[repair detail list]</b></h1>
@@ -67,7 +88,8 @@ const RepairList = () => {
                 </Box>
 
                 <Box mt={2}>
-                    <Button component={Link} to="/receipt" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Generate Receipt</Button>
+                    <Button component={Link} variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} 
+                            onClick={() => handleUpdateRepairHistory(repairs)} >Update Repair History</Button>
                 </Box>
             </div>
         </div>

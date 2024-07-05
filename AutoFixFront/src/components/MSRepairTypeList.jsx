@@ -38,76 +38,79 @@ const MSRepairTypeList = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} style={{ backgroundColor: 'white', color: 'black', padding: '20px', borderRadius: '10px' }}>
-            <Box mb={2}>
-                <Button type="submit" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Submit</Button>
-            </Box>
-            <Grid container spacing={1}>
-                <Grid item xs={6}>
-                    <FormControl fullWidth>
+        <div>
+            <h1><b>[add a new repair type]</b></h1>
+            <form onSubmit={handleSubmit} style={{ backgroundColor: 'white', color: 'black', padding: '20px', borderRadius: '10px' }}>
+                <Box mb={2}>
+                    <Button type="submit" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>Submit</Button>
+                </Box>
+                <Grid container spacing={1}>
+                    <Grid item xs={6}>
+                        <FormControl fullWidth>
+                            <TextField
+                                name="repairType"
+                                label="Repair type"
+                                value={formData.repairType}
+                                onChange={handleChange}
+                                required
+                                >
+                                </TextField>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl fullWidth>
                         <TextField
-                            name="repairType"
-                            label="Repair type"
-                            value={formData.repairType}
+                            name="gasolinePrice"
+                            label="Gasoline price"
+                            type="number"
+                            value={formData.gasolinePrice}
                             onChange={handleChange}
                             required
-                            >
-                            </TextField>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={6}>
-                    <FormControl fullWidth>
-                    <TextField
-                        name="gasolinePrice"
-                        label="Gasoline price"
-                        type="number"
-                        value={formData.gasolinePrice}
-                        onChange={handleChange}
-                        required
-                    />
-                    </FormControl>
+                        />
+                        </FormControl>
 
-                </Grid>
-                <Grid item xs={6}>
-                    <FormControl fullWidth>
-                    <TextField
-                        name="dieselPrice"
-                        label="Diesel price"
-                        type="number"
-                        value={formData.dieselPrice}
-                        onChange={handleChange}
-                        required
-                    />
-                    </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl fullWidth>
+                        <TextField
+                            name="dieselPrice"
+                            label="Diesel price"
+                            type="number"
+                            value={formData.dieselPrice}
+                            onChange={handleChange}
+                            required
+                        />
+                        </FormControl>
 
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl fullWidth>
+                        <TextField
+                            name="hybridPrice"
+                            label="Hybrid price"
+                            type="number"
+                            value={formData.hybridPrice}
+                            onChange={handleChange}
+                            required
+                        />
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FormControl fullWidth>
+                        <TextField
+                            name="electricPrice"
+                            label="Electric price"
+                            type="number"
+                            value={formData.electricPrice}
+                            onChange={handleChange}
+                            required
+                        />
+                        </FormControl>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <FormControl fullWidth>
-                    <TextField
-                        name="hybridPrice"
-                        label="Hybrid price"
-                        type="number"
-                        value={formData.hybridPrice}
-                        onChange={handleChange}
-                        required
-                    />
-                    </FormControl>
-                </Grid>
-                <Grid item xs={6}>
-                    <FormControl fullWidth>
-                    <TextField
-                        name="electricPrice"
-                        label="Electric price"
-                        type="number"
-                        value={formData.electricPrice}
-                        onChange={handleChange}
-                        required
-                    />
-                    </FormControl>
-                </Grid>
-            </Grid>
 
-        </form>
+            </form>
+        </div>
     );
 };
 

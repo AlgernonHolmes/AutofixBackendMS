@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import repairService from '../services/repair.service';
 import repairListService from '../services/repairList.service'
 import {TextField, Button, FormControl, MenuItem, Box, Grid} from '@mui/material';
@@ -6,6 +7,8 @@ import {TextField, Button, FormControl, MenuItem, Box, Grid} from '@mui/material
 
 
 const RepairForm = () => {
+
+    const {registrationPlate} = useParams();
 
     const [optionsRepair, setOptionsRepair] = useState([]);
 
@@ -37,9 +40,8 @@ const RepairForm = () => {
 
 
 
-
     const [formData, setFormData] = useState({
-      vehiclePlate: '',
+      vehiclePlate: registrationPlate || '',
       repairType: '',
       repairDate: null, 
       repairTime: null

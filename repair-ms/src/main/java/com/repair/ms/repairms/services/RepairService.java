@@ -78,9 +78,38 @@ public class RepairService {
         }
         repairEntity.setTotalCost(initialTotalCost);
 
-        VehicleModel vehicle = getVehicle(vehiclePlate);
+        /* we set the oldest repair date and time for entryVDate and
+           entryVTime
+         */
+        LocalDate oldestRepairDate = null;
+        LocalTime oldestRepairTime = null;
+
+        for (RepairDetailEntity repairDetail : repairDetails) {
+
+            if (oldestRepairDate == null || repairDetail.getRepairDate().isBefore(oldestRepairDate)
+                    || (repairDetail.getRepairDate().isEqual(oldestRepairDate)
+                    && repairDetail.getRepairTime().isBefore(oldestRepairTime))) {
+                oldestRepairDate = repairDetail.getRepairDate();
+                oldestRepairTime = repairDetail.getRepairTime();
+            }
+        }
+
+        repairEntity.setEntryVDate(oldestRepairDate);
+        repairEntity.setEntryVTime(oldestRepairTime);
+
+        /* we set exitVDate for a week after the oldest repair
+           we set the exitVTime for 16:00 */
+
+        LocalTime exitVTime = LocalTime.of(16, 0, 0);
+        LocalDate exitVDate = oldestRepairDate.plusWeeks(1);
+
+        repairEntity.setExitVDate(exitVDate);
+        repairEntity.setExitVTime(exitVTime);
+
 
         /* we set the data we need for the aux methods */
+
+        VehicleModel vehicle = getVehicle(vehiclePlate);
 
         repairEntity.setEngineType(vehicle.getEngineType());
         repairEntity.setVehicleBrand(vehicle.getBrand());
@@ -142,7 +171,9 @@ public class RepairService {
             repair.setExitCDate(updatedRepair.getExitCDate());
             repair.setExitVTime(updatedRepair.getExitVTime());
             repair.setExitCTime(updatedRepair.getExitCTime());
-            return repairRepository.save(repair);
+
+            repairRepository.save(repair);
+            return applySurandDis(repair.getVehiclePlate());
         });
     }
 
@@ -177,11 +208,8 @@ public class RepairService {
         }
         long diffInDays = ChronoUnit.DAYS.between(repair.getExitVDate(), repair.getExitCDate());
         if(diffInDays > 0){
-            double delaySurchargePercentage = 0.05;
-            double delaySurcharge = initialCost * diffInDays * delaySurchargePercentage;
-            if(delaySurcharge > maxDelaySurcharge){
-                maxDelaySurcharge = delaySurcharge;
-            }
+            maxDelaySurcharge = initialCost * (diffInDays * 0.05);
+
         }
         return maxDelaySurcharge;
     }
@@ -313,43 +341,43 @@ public class RepairService {
         double discount = 0;
 
         if (repairQuantity >= 1 && repairQuantity <= 2) {
-            if (engineType.equalsIgnoreCase("gasolina")) {
+            if (engineType.equalsIgnoreCase("gasoline")) {
                 discount = 0.05;
             } else if (engineType.equalsIgnoreCase("diesel")) {
                 discount = 0.07;
-            } else if (engineType.equalsIgnoreCase("hibrido")) {
+            } else if (engineType.equalsIgnoreCase("hybrid")) {
                 discount = 0.10;
-            } else if (engineType.equalsIgnoreCase("electrico")) {
+            } else if (engineType.equalsIgnoreCase("electric")) {
                 discount = 0.08;
             }
         } else if (repairQuantity >= 3 && repairQuantity <= 5) {
-            if (engineType.equalsIgnoreCase("gasolina")) {
+            if (engineType.equalsIgnoreCase("gasoline")) {
                 discount = 0.10;
             } else if (engineType.equalsIgnoreCase("diesel")) {
                 discount = 0.12;
-            } else if (engineType.equalsIgnoreCase("hibrido")) {
+            } else if (engineType.equalsIgnoreCase("hybrid")) {
                 discount = 0.15;
-            } else if (engineType.equalsIgnoreCase("electrico")) {
+            } else if (engineType.equalsIgnoreCase("electric")) {
                 discount = 0.13;
             }
         } else if (repairQuantity >= 6 && repairQuantity <= 9) {
-            if (engineType.equalsIgnoreCase("gasolina")) {
+            if (engineType.equalsIgnoreCase("gasoline")) {
                 discount = 0.15;
             } else if (engineType.equalsIgnoreCase("diesel")) {
                 discount = 0.17;
-            } else if (engineType.equalsIgnoreCase("hibrido")) {
+            } else if (engineType.equalsIgnoreCase("hybrid")) {
                 discount = 0.20;
-            } else if (engineType.equalsIgnoreCase("electrico")) {
+            } else if (engineType.equalsIgnoreCase("electric")) {
                 discount = 0.18;
             }
         } else if (repairQuantity >= 10) {
-            if (engineType.equalsIgnoreCase("gasolina")) {
+            if (engineType.equalsIgnoreCase("gasoline")) {
                 discount = 0.20;
             } else if (engineType.equalsIgnoreCase("diesel")) {
                 discount = 0.22;
-            } else if (engineType.equalsIgnoreCase("hibrido")) {
+            } else if (engineType.equalsIgnoreCase("hybrid")) {
                 discount = 0.25;
-            } else if (engineType.equalsIgnoreCase("electrico")) {
+            } else if (engineType.equalsIgnoreCase("electric")) {
                 discount = 0.23;
             }
         }

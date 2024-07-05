@@ -25,6 +25,7 @@ function App() {
           <Route path="/list" element={<VehicleList/>}></Route>
           <Route path="/repairtype" element={<MSRepairTypeList/>}></Route>
           <Route path="/add/repair" element={<RepairForm/>}></Route>
+          <Route path="/add/repair/:registrationPlate" element={<RepairForm/>}></Route>
           <Route path="/list/repair" element={<RepairList/>}></Route>
           <Route path="/list/repairhistory" element={<RepairHistory/>}></Route>
           <Route path="/receipt" element={<VehicleReceipt/>}></Route>

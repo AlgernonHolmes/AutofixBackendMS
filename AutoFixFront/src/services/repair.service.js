@@ -20,17 +20,30 @@ const deleteRepairDetailById = (id) => {
 
 /* REPAIR SECTION */
 
+const createRepair = (repair) => {
+    return httpClient.post(`/ms/repair/`, repair);
+}
+
 const getAllRepairs = () => {
     return httpClient.get('/ms/repair/');
 }
 
+const deleteRepairById = (id) => {
+    return httpClient.delete(`/ms/repair/${id}`);
+}
 
+const updateRepair = (id, updatedRepair) => {
+    return httpClient.put(`/ms/repair/${id}`, updatedRepair);
+}
 
 export default { 
     getAllRepairDetails, 
     createRepairDetail, 
     updateRepairDetail, 
     deleteRepairDetailById,
-    getAllRepairs
+    createRepair,
+    getAllRepairs,
+    updateRepair,
+    deleteRepairById
 };
 

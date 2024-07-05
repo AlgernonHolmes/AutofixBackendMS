@@ -24,7 +24,43 @@ const RepairHistory = () => {
       }, []);
 
     console.log(repairs);
+
+    const handleDeleteRepair = (id) => {
+        repairService.deleteRepairById(id);
+    }
     
+
+    const handleExitCDateChange = (event, repairToUpdate) => {
+        const updatedRepairs = repairs.map(repair => {
+            if (repair.id === repairToUpdate.id) {
+                return {
+                    ...repair,
+                    exitCDate: event.target.value
+                };
+            }
+            return repair;
+        });
+        setRepairs(updatedRepairs);
+    };
+    
+    const handleExitCTimeChange = (event, repairToUpdate) => {
+        const updatedRepairs = repairs.map(repair => {
+            if (repair.id === repairToUpdate.id) {
+                return {
+                    ...repair,
+                    exitCTime: event.target.value
+                };
+            }
+            return repair;
+        });
+        setRepairs(updatedRepairs);
+    };
+    
+    
+    const handleUpdateRepairHistory = (id, repair) => {
+        repairService.updateRepair(id, repair);
+        console.log("repair updated")
+    }
 
     return ( 
         <div>
@@ -51,6 +87,8 @@ const RepairHistory = () => {
                                 <TableCell><b>ExitVTime</b></TableCell>
                                 <TableCell><b>ExitCDate</b></TableCell>
                                 <TableCell><b>ExitCTime</b></TableCell>
+                                <TableCell><b>Update RepairHistory</b></TableCell>
+                                <TableCell><b>Delete RepairHistory</b></TableCell>
                             </TableRow>
                         </TableHead>
                             
@@ -72,8 +110,39 @@ const RepairHistory = () => {
                                     <TableCell>{repair.finalPrice}</TableCell>
                                     <TableCell>{repair.exitVDate}</TableCell>
                                     <TableCell>{repair.exitVTime}</TableCell>
-                                    <TableCell>{repair.exitCDate}</TableCell>
-                                    <TableCell>{repair.exitCTime}</TableCell>
+                                   
+                                    <TableCell>
+                                        <TextField
+                                            type="date"
+                                            value={repair.exitCDate || ''}
+                                            onChange={(event) => handleExitCDateChange(event, repair)}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            fullWidth
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                        <TextField
+                                            type="time"
+                                            value={repair.exitCTime || ''}
+                                            onChange={(event) => handleExitCTimeChange(event, repair)}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            fullWidth
+                                        />
+                                    </TableCell>
+
+                                    <TableCell>
+                                        <Button variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} 
+                                                onClick={() => handleUpdateRepairHistory(repair.id, repair)}>U</Button>
+                                    </TableCell>
+
+                                    <TableCell>
+                                        <Button variant="contained" style={{ backgroundColor: '#800000', color: 'white' }} 
+                                                onClick={() => handleDeleteRepair(repair.id)}>D</Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

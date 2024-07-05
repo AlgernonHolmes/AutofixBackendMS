@@ -62,7 +62,8 @@ const VehicleList = () => {
                   <TableCell>{vehicle.numSeats}</TableCell>
                   <TableCell>{vehicle.milage}</TableCell>
                   <TableCell>
-                      <Button component={Link} to="/add/repair" variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>
+                      <Button component={Link} 
+                              to={`/add/repair/${vehicle.registrationPlate}`} variant="contained" style={{ backgroundColor: '#800000', color: 'white' }}>
                         R
                       </Button>
                     </TableCell>
