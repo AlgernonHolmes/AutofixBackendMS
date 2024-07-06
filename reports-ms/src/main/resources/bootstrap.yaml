@@ -12,8 +12,8 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8081
+      uri: http://config-service-service:8081
   datasource:
-    url: jdbc:postgresql://localhost:5432/reports-ms
+    url: jdbc:postgresql://reports-ms-db-service:5432/reports-ms
     username: postgres
     password: alo1234

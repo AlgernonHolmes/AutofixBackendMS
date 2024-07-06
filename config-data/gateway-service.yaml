@@ -5,9 +5,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://${EUREKA:localhost}:8761/eureka
+      defaultZone: http://eureka-service-service:8761/eureka
   instance:
-    hostname: localhost
+    preferIpAddress: true
 spring:
   cloud:
     gateway:
