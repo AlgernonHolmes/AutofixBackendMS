@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: config-service
-          image: algernonholmes/config-service
+          image: algernonholmes/config-server
           ports:
             - containerPort: 8081
 ---
