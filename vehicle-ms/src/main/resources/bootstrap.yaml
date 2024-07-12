@@ -1,23 +1,21 @@
 spring:
-  devtools:
-    restart:
-      additional-paths: src/main/java
   application:
     name: vehicle-ms
   jpa:
-    database: POSTGRESQL
-    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   cloud:
     config:
       enabled: true
-      uri: http://config-service-service:8081
-      import:
-        - optional:configserver:
-            uri: http://localhost:8081
+      uri: http://config-service-service:8081/
   datasource:
     url: jdbc:postgresql://vehicle-ms-db-service:5432/vehicle-ms
     username: postgres
     password: alo1234
+    driver-class-name: org.postgresql.Driver
+
+
 
