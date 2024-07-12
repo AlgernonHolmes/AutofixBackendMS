@@ -4,14 +4,5 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://config-service-service:8081
-management:
-  endpoints:
-    web:
-      exposure:
-        include: 'gateway,*'
-  endpoint:
-    gateway:
-      enabled: true
-    health:
-      show-details: always
+      uri: http://config-service-service:8081/
+

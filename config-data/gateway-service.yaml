@@ -5,7 +5,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eureka-service-service:8761/eureka
+      defaultZone: http://eureka-service-service:8761/eureka/
   instance:
     preferIpAddress: true
 spring:
@@ -22,7 +22,6 @@ spring:
             allowed-origin-patterns: '*'
             allowed-methods: "*"
             allowed-headers: "*"
-            allow-credentials: true
       routes:
         - id: vehicle-ms
           uri: lb://vehicle-ms
