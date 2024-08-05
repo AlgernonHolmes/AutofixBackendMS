@@ -24,9 +24,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: autofixfront-deployment
+  name: autofixfront-service
   labels:
-    app: autofixfront-deployment
+    app: autofixfront-service
 spec:
   selector:
     app: autofixfront-deployment
