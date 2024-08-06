@@ -1,19 +1,21 @@
 spring:
-  devtools:
-    restart:
-      aditional-paths: src/main/java
   application:
     name: repair-ms
   jpa:
-    database: POSTGRESQL
-    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
   cloud:
     config:
       enabled: true
-      uri: http://config-service-service:8081
+      uri: http://config-service-service:8081/
   datasource:
-    url: jdbc:postgresql://repair-ms-db-service:5433/repair-ms
+    url: jdbc:postgresql://repair-ms-db-service:5432/repair-ms
     username: postgres
     password: alo1234
+    driver-class-name: org.postgresql.Driver
+
+
+
